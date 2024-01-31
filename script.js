@@ -58,11 +58,9 @@ console.log(title, type);
     if (foundIndex !== -1) {
       const titleToRemove = tasks[foundIndex].title;
       const typeToRemove = tasks[foundIndex].type;
-  
-      // Utilizando indexOf para encontrar a posição do elemento na array
+      
       const indexToRemove = tasks.indexOf(tasks.find(task => task.title === titleToRemove && task.type === typeToRemove));
   
-      // Removendo o elemento da array pelo índice
       tasks.splice(indexToRemove, 1);
   
       renderElements(tasks);
