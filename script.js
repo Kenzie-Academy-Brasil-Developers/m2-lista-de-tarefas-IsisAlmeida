@@ -24,9 +24,8 @@ function renderElements(taskList) {
 
 renderElements(tasks);
 
-
 function createTaskList(title, type) {
-console.log(title, type);
+
   const liTaskItem = document.createElement("li");
 
   const divTaskInfo = document.createElement("div");
@@ -53,13 +52,15 @@ console.log(title, type);
   btnRemoveTask.classList.add("task__button--remove-task");
 
   btnRemoveTask.addEventListener("click", (event) => {
-    const foundIndex = tasks.findIndex(task => task.title === title && task.type === type);
+    const foundIndex = tasks.findIndex(task => 
+      task.title === title && task.type === type);
   
     if (foundIndex !== -1) {
       const titleToRemove = tasks[foundIndex].title;
       const typeToRemove = tasks[foundIndex].type;
       
-      const indexToRemove = tasks.indexOf(tasks.find(task => task.title === titleToRemove && task.type === typeToRemove));
+      const indexToRemove = tasks.indexOf(tasks.find(task => 
+        task.title === titleToRemove && task.type === typeToRemove));
   
       tasks.splice(indexToRemove, 1);
   
