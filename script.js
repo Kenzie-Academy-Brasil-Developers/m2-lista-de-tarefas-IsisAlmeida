@@ -12,26 +12,24 @@ const tasks = [
 ];
 
 function renderElements(taskList) {
-
   const ulTasksList = document.querySelector(".tasks__list");
   ulTasksList.innerHTML = "";
 
   taskList.forEach((taskItem) => {
-    const newTask = createTaskList(taskItem.title, taskItem.type);
+    const newTask = createTaskItem(taskItem);
     ulTasksList.appendChild(newTask);
   });
-};
+}
 
 renderElements(tasks);
 
-function createTaskList(title, type) {
+function createTaskItem(object) {
+  const { title, type } = object;
 
   const liTaskItem = document.createElement("li");
-
   const divTaskInfo = document.createElement("div");
   const spanTaskType = document.createElement("span");
   const paragraph = document.createElement("p");
-
   const btnRemoveTask = document.createElement("button");
 
   liTaskItem.append(divTaskInfo, btnRemoveTask);
@@ -47,23 +45,28 @@ function createTaskList(title, type) {
     spanTaskType.classList.add("span-important");
   } else if (type.toLowerCase() === "normal") {
     spanTaskType.classList.add("span-normal");
-  };
+  }
 
   btnRemoveTask.classList.add("task__button--remove-task");
 
   btnRemoveTask.addEventListener("click", (event) => {
-    const foundIndex = tasks.findIndex(task => 
-      task.title === title && task.type === type);
-  
+    const foundIndex = tasks.findIndex((task) =>
+      task.title === title && task.type === type
+    );
+
     if (foundIndex !== -1) {
       const titleToRemove = tasks[foundIndex].title;
       const typeToRemove = tasks[foundIndex].type;
-      
-      const indexToRemove = tasks.indexOf(tasks.find(task => 
-        task.title === titleToRemove && task.type === typeToRemove));
-  
+
+      const indexToRemove = tasks.indexOf(
+        tasks.find(
+          (task) =>
+            task.title === titleToRemove && task.type === typeToRemove
+        )
+      );
+
       tasks.splice(indexToRemove, 1);
-  
+
       renderElements(tasks);
     }
   });
@@ -87,7 +90,9 @@ function handleFormEvents() {
   const formAddTask = document.querySelector(".form__container");
 
   const inputTaskTitle = document.querySelector("#input_title");
-  const seletecTaskImportance = document.querySelector(".form__input--priority");
+  const seletecTaskImportance = document.querySelector(
+    ".form__input--priority"
+  );
 
   formAddTask.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -95,8 +100,8 @@ function handleFormEvents() {
     const taskTitle = inputTaskTitle.value;
     const taskType = seletecTaskImportance.value;
 
-  addNewTask(taskTitle, taskType);
+    addNewTask(taskTitle, taskType);
   });
-};
+}
 
 handleFormEvents();
