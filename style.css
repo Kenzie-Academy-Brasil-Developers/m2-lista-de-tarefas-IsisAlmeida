@@ -101,6 +101,7 @@ h2 {
     background-color: white;
     padding: 1.875rem;
     border-radius: .5rem;
+    width: 100%;
 }
 
 .tasks__list {
